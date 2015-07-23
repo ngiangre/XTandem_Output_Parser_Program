@@ -1,0 +1,95 @@
+*************
+
+This Code Book explains the flow of the ParseOutputXML.java file. See the source code for
+code details.
+*************
+
+Contents:
+
+1. Overview
+2. Global Variables
+3. Object
+
+
+1. Overview
+
+		ParseOutputXML uses a series of for loops to go through, extract and store values 
+	from within the XML structure. The main method of ParseOutputXML outlines the program 
+	execution.
+		First, the filepath, the argument this program takes in, is stored into the filepath
+	variable in class Entry. Entry is a class that is declared and instantiated as an
+	object to store values from the XML structure and write/close a text file that holds all
+	this information, delimited by tabs. 
+		Second, ParseOutputXML parses the file. ParseOutputXML's main function is to parse 
+	the XML structure. Parsing occurs through a number of for loops and conditional statements 
+	that loop through nodes and grab attribute values from these nodes. The values are then written
+	to a text file at certain times while the looping occurs. See the source code for
+	exactly how this is done. Also, the file that is written to is created within the ParseXMLFile 
+	method. Furthermore, the data is written to the text file via an Entry object. This object, instantiated
+	at certain times during the looping process, stores the values and holds them until the appropriate time to 
+	write them to the text file. 
+		Third, non redundant protein and peptide numbers are printed. There are a number of other
+	print statements that occur during as the program progresses. 
+		Fourth, the print statement at the end indicates the program has ended by printing "done".
+		Note: there are debug statement commented out in the source code which delineate the looping
+	of the XML structure and what values are stored in each Entry object until they are finally written
+	to the file. Uncomment them to see how the XML is parsed as the program executes. This will print out alot
+	of text, at a rapid rate. 
+	
+2. Global variables
+		
+		ParseOutputXML
+		
+			none
+			
+		Entry
+			-the file is the output xml file name and ".txt" appended to it. The Columns are printed in the second 
+			line of the file, separated by tabs, that describe the data printed. 
+			static PrintWriter file
+			static String Column1
+			static String Column2
+			static String Column3
+			static String Column4
+			static String Column5
+			static String Column6
+			static String Column7
+			static String Column8
+			static String Column9
+			
+			-these arraylist store values after looping through the XML structure. There may be more unique values
+			than what is listed in the text file, and this is for reasons unknown to the developer.
+			static ArrayList< String > proteinIdentities
+			static ArrayList< String > peptideSequences
+			static ArrayList< String > modificationmasses
+			
+			-these sets are used to convert the arraylists to nonredundant sets, so that the number of unique values
+			may be printed out. 
+			static Set<String> nonredundantProteins;
+	    	static Set<String> nonredundantPeptides;
+	    	static Set<String> nonredundantModMasses;
+	    	
+	    	-these variables all hold values that are then written to the text file. They are all,
+	    	 except the first and last variable, written within one line, separated by tabs. As the looping occurs,
+	    	 these values are written on the next line, and so on.
+	    	static String filepath;
+			String proteinIdentity;
+			String peptideSequence;
+			String expectation;
+			String retentionTime;
+			String charge;
+			String delta;
+			String aminoAcidNumber;
+			String modificationMass;
+			String modificationType;
+			static String biomlLabel="";
+			
+3. Object
+
+	The only Object used is instantiated from the class Entry. The class Entry holds all the data collected from the parsing
+	class ParseOutputXML. While looping in ParseXML() in the class ParseOutputXML, the class Entry is declared as "e", 
+	and all values are collected into arraylists and printed at the end of the algorithm, or stored in strings and printed
+	into the text file in strategic locations during parsing. 
+			
+			
+		
+		

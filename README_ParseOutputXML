@@ -1,0 +1,67 @@
+****************
+
+This README file explains the ParseOutputXML program, which can be used to read and
+decipher the output of tandem. See the source code comments for technical details.
+****************
+
+Contents:
+1. Overview
+2. How to run
+3. Why aren't all the values printed to the file?
+4. Links
+
+
+
+1. Overview
+
+		This program creates a text file with the annotation values in a xtandem 
+		xml output file. As the algorithm parses the xml file, it prints its progress as well 
+		as unique values (e.g. proteins and peptides). After compiling, with 
+		"javac OutputParserXML.java", one can run the program with the command
+		"java OutputParserXML youroutputfile.xml". It will print text as the algorithm 
+		runs, and print unique annotated values recorded in the xml output file. This 
+		program outputs a .txt file (tab delimited, file name is youroutputfilename +".txt" outputted to the same directory 
+		as the xml file) with the following columns and values listed in the xml output file:
+		
+			1. protein identity
+			2. peptide sequence
+			3. expectation value
+			4. retention time
+			5. parent charge
+			6. delta value (theoretical-calculated precursor mass)
+			7. amino acid modification
+				a. amino acid number
+				b. modification mass
+				c. modification type
+		
+	
+2. How to run
+
+   Make sure your heap size is at 256MB. Set by typing "java -Xmx256M ParseOutputXML.java"
+   See Heap Size link in Links for details.
+   
+   1. "javac ParseOutputXML.java"
+   
+   2. "java ParseOutputXML yourxtandemoutput.xml"
+   
+
+3. Why aren't all the values printed to the file?
+
+	You might have noticed, if you're xtandem output file is very large, that not all your data is printed to the file
+	(most but not all). But, the arraylists in the program collect all the values and the printed numbers at the
+	end of the algorithm are correct i.e. the arraylists are not memory limited, in contrast to the file writer classes. 
+	The source code is not to blame; all the data in the XML structure is accessible and reached. There are ways to get 
+	around this fact if you run into this situation. First, java may not have enough memory i.e. the heap size isn't large 
+	enough. You can indicate the memory allocation of the program by typing "java -Xmx256M yourprogram". Your program 
+	should be a class file and you may designate any other size, it doesn't have to be 256M (M=megabytes). If that doesn't 
+	help, then you might have to modify the source code so as to output out only what you want (hopefully that won't
+	be subject to the imported file writer classes memory limitations). Because of the content that's printed, alot is 
+	printed out to the file and the text file stops accepting further data to be written into it because it
+	cannot accept more data (due to inherent standards in imported file writer classes). 
+   
+   
+4. Links
+
+XML Parsing
+
+http://www.w3schools.com/xml/xml_parser.asp

@@ -1,0 +1,2 @@
+javac ParseOutputXML.java
+java ParseOutputXML output_06.2014_07_21_11_11_43.t.xml
